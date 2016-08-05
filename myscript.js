@@ -13,8 +13,8 @@ function getCurrentTabUrl(callback) {
   });
 }
 
-function tabOpener(callback) {
-  callback (1);
+function tabOpener() {
+  chrome.tabs.create({"url":"http://allrecipes.com/"});
 }
 
 function renderStatus(statusText) {
@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderStatus('will open tab ' + url);
   });
 
-  tabOpener(function(a) {
+  tabOpener(function() {
       renderStatus('Here you go ');
-      chrome.tabs.create({"url":"http://allrecipes.com/"});
   });
 });
