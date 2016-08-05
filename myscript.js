@@ -13,8 +13,8 @@ function getCurrentTabUrl(callback) {
   });
 }
 
-function tabOpener() {
-  return (1);
+function tabOpener(callback) {
+  callback (1);
 }
 
 function renderStatus(statusText) {
@@ -23,10 +23,11 @@ function renderStatus(statusText) {
 
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
-    renderStatus('Performing Google Image search for ' + url);
+    renderStatus('will open tab ' + url);
+  });
 
-    tabOpener(url, function() {
-      renderStatus('Cannot display image. ' + errorMessage);
-      chrome.tabs.create({"url":"http://walmart.com"});
+  tabOpener(function(a) {
+      renderStatus('Here you go ');
+      chrome.tabs.create({"url":"http://allrecipes.com/"});
   });
 });
