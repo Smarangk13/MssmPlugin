@@ -13,8 +13,13 @@ function getCurrentTabUrl(callback) {
   });
 }
 
-function tabOpener() {
-  chrome.tabs.create({"url":"http://allrecipes.com/"});
+function tabOpener(url, callback) {
+  var reader = new String(url);
+  var pos = reader.indexOf("q=")+2;
+  reader = reader.substring(pos);
+  chrome.tabs.create({"url":"http://allrecipes.com/"+"/search/results/?wt=" + reader + "&sort=re"});
+  //chrome.tabs.create({"url":"http://google.com/"});
+  callback(1)
 }
 
 function renderStatus(statusText) {
@@ -24,9 +29,8 @@ function renderStatus(statusText) {
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
     renderStatus('will open tab ' + url);
-  });
-
-  tabOpener(function() {
-      renderStatus('Here you go ');
+    tabOpener(url, function() {
+        renderStatus('Here you go ');
+    });
   });
 });
