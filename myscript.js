@@ -17,20 +17,17 @@ function tabOpener(url, callback) {
   var reader = new String(url);
   var pos = reader.indexOf("q=")+2;
   reader = reader.substring(pos);
-  chrome.tabs.create({"url":"http://allrecipes.com/"+"/search/results/?wt=" + reader + "&sort=re"});
+  var button=document.getElementById("buttonz");
+  button.addEventListener('click',function(){
+    chrome.tabs.create({"url":"http://allrecipes.com/"+"/search/results/?wt=" + reader + "&sort=re"});
+  });
   //chrome.tabs.create({"url":"http://google.com/"});
   callback(1)
 }
 
-function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
-}
-
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
-    renderStatus('will open tab ' + url);
     tabOpener(url, function() {
-        renderStatus('Here you go ');
     });
   });
 });
