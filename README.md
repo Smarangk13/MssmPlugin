@@ -29,7 +29,7 @@ Once you have modified things with the editor of your choice and save them.
 
 1. see differences with git status
 
-2. add the files you want to save using git add -A or got add --all or git add <filename>
+2. add the files you want to save using git add -A or git add --all or git add <filename>
 
 3. to save your files type git commit, a notepad will appear allowing you to name your commit
 you can also use git commit -m "(your commit message here)" to avoid having notepad open each time
